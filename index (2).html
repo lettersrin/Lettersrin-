@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            color: #333;
+            transition: background-color 1s, color 1s;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        h1 {
+            font-size: 50px;
+        }
+        .hidden-content {
+            display: none;
+        }
+        .heart {
+            color: red;
+            font-size: 100px;
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 25px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart-icon {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: float 3s ease-in-out forwards;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-100px) scale(1.5); opacity: 0.8; }
+            100% { transform: translateY(-200px) scale(2); opacity: 0; }
+        }
+    </style>
+    <script>
+        function revealSurprise() {
+            document.body.style.backgroundColor = '#ffe6e6';
+            document.body.style.color = '#d63384';
+            document.getElementById('normal-content').style.display = 'none';
+            document.getElementById('surprise-content').style.display = 'block';
+            createHearts();
+        }
+
+        function createHearts() {
+            const heartsContainer = document.querySelector('.hearts');
+            if (!heartsContainer) return;
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    let heart = document.createElement('div');
+                    heart.classList.add('heart-icon');
+                    heart.innerHTML = '💞💞';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.bottom = '0';
+                    heart.style.animation = `float ${Math.random() * 3 + 2}s ease-in-out`;
+                    heartsContainer.appendChild(heart);
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 100);
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Nhúng nhạc YouTube -->
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/OCldxsTtpAQ?autoplay=1&loop=1&playlist=OCldxsTtpAQ" 
+        frameborder="0" allow="autoplay"></iframe>
+
+    <div class="container" id="normal-content">
+        <h1>Khảo sát số liệu</h1>
+        <p>Bài tập nhóm 9/2</p>
+        <button class="button" onclick="revealSurprise()">Nhấp vào để thực hiện</button>
+    </div>
+
+    <div class="container hidden-content" id="surprise-content">
+        <h1>1 tháng rồi hehe&#39;s Day! <span class="heart"></span></h1>
+        <p>Gửi vợ.</p>
+        <p>Nay là 11/3, um um vậy mà cũng được 1 tháng của 2 đứa mình rồi.</p>
+        <p>Tuy thời gian không quá dài cũng không quá ngắn nhưng mà tui rất là thương bà luôn á vợ, nên là đừng bỏ tui nhá.</p>
+        <p>Thôi tóm lại là cảm ơn vì 1 tháng qua và mong là bọn mình sẽ đi với nhau lâu dài hơn nữa hehe.</p>
+    </div>
+    <div class="hearts"></div>
+</body>
+</html>
